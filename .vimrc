@@ -9,6 +9,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall 
 endif
 
+"autocmd VimEnter * :MRU
 
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
@@ -19,6 +20,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-scripts/xoria256.vim'
 	Plug 'vim-scripts/mru.vim'
+	Plug 'mhinz/vim-startify'
 call plug#end()
 
 
@@ -66,7 +68,7 @@ map <silent> <tab> :tabnext<cr>
 map <silent> <S-tab> :tabprev<cr>
 map <silent> <c-t> :tabnew<cr>
 map <silent> <c-w> :tabclose<cr>
-map <silent> <c-q> :q<cr>
+map <silent> <c-q> :SSave current<cr>:qa<cr>
 " Ctrl-O Edit
 set wildcharm=<C-I>
 map <c-o> :edit <c-I>
@@ -75,6 +77,8 @@ nnoremap j gj
 nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
+" Wrap around arrow keys!
+set whichwrap+=<,>,h,l,[,]
 " Typo commands
 :command WQ wq
 :command Wq wq
@@ -88,8 +92,9 @@ map <c-c> y
 map <c-f> /
 map <f3> n
 map <c-f3> N
-
-
+" Session
+map <silent> <f9> :SSave <c-I>
+map <silent> <f10> :SLoad <c-I>
 
 
 
