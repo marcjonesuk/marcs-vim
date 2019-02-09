@@ -48,6 +48,12 @@ set autoindent
 set splitbelow
 set splitright
 
+" persistent undo
+try
+    set undodir=~/.vim_runtime/temp_dirs/undodir
+    set undofile
+catch
+endtry
 
 " *** Search settings *** 
 set hlsearch 																				" highlighting on
