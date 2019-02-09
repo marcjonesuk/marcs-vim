@@ -97,7 +97,6 @@ map <silent> <f9> :SSave <c-I>
 map <silent> <f10> :SLoad <c-I>
 
 
-
 " *** Colorscheme ***
 try 
 colorscheme xoria256 
