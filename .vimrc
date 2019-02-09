@@ -17,7 +17,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
 	Plug 'Yggdroot/indentLine'
 	Plug 'itchyny/lightline.vim'
-	"Plug 'scrooloose/nerdtree'
+	Plug 'scrooloose/nerdtree'
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-scripts/xoria256.vim'
 	Plug 'vim-scripts/mru.vim'
@@ -131,7 +131,7 @@ let NERDTreeShowHidden=1
 " NERDTree
 let g:NERDTreeNodeDelimiter = "\u00a0"
 let g:NERDTreeWinPos = "right"
-map <f12> :NERDTreeTabsOpen<cr>
+map <f12> :NERDTreeToggle<cr>
 " Lightline - show file path in status bar
 let g:lightline = {
 			\ 'active': {
