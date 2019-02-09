@@ -7,3 +7,9 @@ Update:
 ```
 sh ~/marcs-vim/update.sh
 ```
+
+Update plugins:
+```
+vim
+:PlugUpdate
+```
