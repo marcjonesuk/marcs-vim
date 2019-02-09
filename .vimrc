@@ -21,6 +21,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/xoria256.vim'
 	Plug 'vim-scripts/mru.vim'
 	Plug 'mhinz/vim-startify'
+  Plug 'tpope/vim-fugitive'
+	Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 
@@ -107,10 +109,10 @@ set background=dark
 
 " *** Plugins ***
 " CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb' "ctrlp top to bottom
+let g:ctrlp_match_window = 'bottom,order:ttb' 		"ctrlp ordered top to bottom
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_map = '<c-p>'
-let g:ctrlp_show_hidden = 1
+let g:ctrlp_show_hidden = 1 											" show . files
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 " MRU
 let MRU_Window_Height = 20 
@@ -120,5 +122,9 @@ let NERDTreeShowHidden=1
 let g:NERDTreeNodeDelimiter = "\u00a0"
 let g:NERDTreeWinPos = "right"
 map <f12> :NERDTreeTabsOpen<cr>
-
-
+" Lightline - show file path in status bar
+let g:lightline = {
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
+      \ }
+      \ }
