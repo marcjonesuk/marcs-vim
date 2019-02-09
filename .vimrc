@@ -74,6 +74,7 @@ Plug 'itchyny/lightline.vim'
 "Plug 'scrooloose/nerdtree'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-scripts/xoria256.vim'
+Plug 'vim-scripts/mru.vim'
 
 call plug#end()
 
