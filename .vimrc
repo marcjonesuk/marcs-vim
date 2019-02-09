@@ -27,7 +27,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
 	Plug 'phenomenes/ansible-snippets'
-call plug#end()
+call plug#end() 
 
 
 " *** General settings ***
@@ -109,6 +109,9 @@ colorscheme xoria256
 catch
 endtry	
 set background=dark
+" bg same as sign column
+"highlight Normal ctermbg=233
+"highlight CursorLine ctermbg=233
 
 
 " *** Plugins ***
@@ -132,3 +135,17 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
       \ }
       \ }
+" git gutter
+" always show sign column
+if exists('&signcolumn')  " Vim 7.4.2201
+  set signcolumn=yes
+else
+  let g:gitgutter_sign_column_always = 1
+endif
+highlight clear SignColumn
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=yellow
+highlight GitGutterDelete ctermfg=red
+highlight GitGutterChangeDelete ctermfg=yellow
+set updatetime=100  " faster updates
+
