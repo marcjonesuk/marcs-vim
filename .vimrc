@@ -10,6 +10,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 "autocmd VimEnter * :MRU
+"autocmd VimEnter * :PlugUpdate<cr>:q<cr>
 
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
@@ -45,7 +46,7 @@ set autoindent
 
 " *** Search settings *** 
 set hlsearch 																				" highlighting on
-set incsearch 																			" search as typing
+set incsearch 																			" search as you type
 set ignorecase 																			" ignore case for searching
 " double esc to remove highlighting
 nnoremap <silent> <esc><esc> :silent! nohls<cr> 		
@@ -55,7 +56,6 @@ nnoremap <silent> <esc><esc> :silent! nohls<cr>
 syntax enable
 set showmatch           " highlight matching [{()}]
 set cursorline
-set lazyredraw          " redraw only when we need to.
 
 
 " *** Tabs and indentation ***
@@ -125,7 +125,7 @@ let g:NERDTreeWinPos = "right"
 map <f12> :NERDTreeTabsOpen<cr>
 " Lightline - show file path in status bar
 let g:lightline = {
-      \ 'active': {
+			\ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
       \ }
       \ }
