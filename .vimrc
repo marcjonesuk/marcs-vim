@@ -10,6 +10,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 "autocmd VimEnter * :MRU
+"autocmd VimEnter * :PlugUpdate<cr>:q<cr>
 
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
@@ -23,6 +24,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mhinz/vim-startify'
   Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+	Plug 'phenomenes/ansible-snippets'
 call plug#end()
 
 
@@ -41,11 +45,13 @@ autocmd GUIEnter * set visualbell t_vb=
 set ruler
 set scrolloff=3
 set autoindent
+set splitbelow
+set splitright
 
 
 " *** Search settings *** 
 set hlsearch 																				" highlighting on
-set incsearch 																			" search as typing
+set incsearch 																			" search as you type
 set ignorecase 																			" ignore case for searching
 " double esc to remove highlighting
 nnoremap <silent> <esc><esc> :silent! nohls<cr> 		
@@ -55,7 +61,6 @@ nnoremap <silent> <esc><esc> :silent! nohls<cr>
 syntax enable
 set showmatch           " highlight matching [{()}]
 set cursorline
-set lazyredraw          " redraw only when we need to.
 
 
 " *** Tabs and indentation ***
@@ -69,8 +74,8 @@ set shiftwidth=2
 map <silent> <tab> :tabnext<cr>
 map <silent> <S-tab> :tabprev<cr>
 map <silent> <c-t> :tabnew<cr>
-map <silent> <c-w> :tabclose<cr>
 map <silent> <c-q> :SSave current<cr>:qa<cr>
+map <leader><tab> <c-w><c-w>
 " Ctrl-O Edit
 set wildcharm=<C-I>
 map <c-o> :edit <c-I>
@@ -87,7 +92,6 @@ set whichwrap+=<,>,h,l,[,]
 :command W w
 :command Q q
 " Windows style shortcuts
-map <c-z> u
 map <c-v> p
 map <c-x> x
 map <c-c> y
@@ -124,7 +128,7 @@ let g:NERDTreeWinPos = "right"
 map <f12> :NERDTreeTabsOpen<cr>
 " Lightline - show file path in status bar
 let g:lightline = {
-      \ 'active': {
+			\ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
       \ }
       \ }
