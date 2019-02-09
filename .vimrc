@@ -15,7 +15,7 @@ endif
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
-	"Plug 'Yggdroot/indentLine'
+	Plug 'Yggdroot/indentLine'
 	Plug 'itchyny/lightline.vim'
 	"Plug 'scrooloose/nerdtree'
 	Plug 'ctrlpvim/ctrlp.vim'
@@ -104,14 +104,11 @@ map <silent> <f10> :SLoad <c-I>
 
 
 " *** Colorscheme ***
+set background=dark
 try 
 colorscheme xoria256 
 catch
 endtry	
-set background=dark
-" bg same as sign column
-"highlight Normal ctermbg=233
-"highlight CursorLine ctermbg=233
 
 
 " *** Plugins ***
@@ -149,3 +146,5 @@ highlight GitGutterDelete ctermfg=red
 highlight GitGutterChangeDelete ctermfg=yellow
 set updatetime=100  " faster updates
 
+" fugitive - vertical gdiff
+set diffopt+=vertical
