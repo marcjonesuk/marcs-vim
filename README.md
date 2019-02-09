@@ -1,6 +1,6 @@
 Install:
 ```
-git clone https://github.com/marcjonesuk/marcs-vim.git ~/ && sh ~/marcs-vim/install.sh
+git clone https://github.com/marcjonesuk/marcs-vim.git ~/marcs-vim && sh ~/marcs-vim/install.sh
 ```
 
 Update:
