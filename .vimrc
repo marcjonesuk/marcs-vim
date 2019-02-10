@@ -16,14 +16,11 @@ autocmd VimEnter * :CtrlPMRU
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
 	Plug 'Yggdroot/indentLine'
-	"Plug 'itchyny/lightline.vim'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'scrooloose/nerdtree'
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-scripts/xoria256.vim'
-" 	Plug 'vim-scripts/mru.vim'
-" 	Plug 'mhinz/vim-startify'
   Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'SirVer/ultisnips'
@@ -31,7 +28,6 @@ call plug#begin('~/.vim/plugged')
 	Plug 'phenomenes/ansible-snippets'
 	Plug 'mrk21/yaml-vim'
 "	Plug 'scrooloose/nerdcommenter'
-"   Plug 'pangloss/vim-javascript'
 	Plug 'stephpy/vim-yaml'
 call plug#end() 
 
@@ -56,11 +52,11 @@ set splitright
 set autowrite																						" save buffer when switching
 
 " persistent undo
-" try
-"     set undodir=~/.vim_runtime/temp_dirs/undodir
-"     set undofile
-" catch
-" endtry
+try
+	set undodir=~/.vim_runtime/temp_dirs/undodir
+	set undofile
+catch
+endtry
 
 " *** Search settings *** 
 set hlsearch 																				" highlighting on
@@ -91,7 +87,7 @@ set shiftwidth=2
 map <silent> <tab> :bnext<cr>
 map <silent> <S-tab> :bprev<cr>
 map <silent> <c-t> :tabnew<cr>
-map <silent> <c-q> :bdelete<cr>
+map <silent> <c-w> :bdelete<cr>
 map <leader><tab> <c-w><c-w>
 " Ctrl-O Edit
 set wildcharm=<C-I>
@@ -147,6 +143,9 @@ hi CursorLine ctermbg=236
 hi cursorLineNR ctermfg=253
 hi Visual ctermbg=25 ctermfg=NONE
 hi Search ctermbg=130
+" hi Wildmenu ctermbg=
+" hi Status ctermbg=
+
 
 augroup CursorLine
   au!
