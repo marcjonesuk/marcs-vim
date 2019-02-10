@@ -9,18 +9,20 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall 
 endif
 
-autocmd VimEnter * :MRU
+autocmd VimEnter * :CtrlPMRU
 "autocmd VimEnter * :PlugUpdate<cr>:q<cr>
 
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
 	Plug 'Yggdroot/indentLine'
-	Plug 'itchyny/lightline.vim'
+	"Plug 'itchyny/lightline.vim'
+	Plug 'vim-airline/vim-airline'
+	Plug 'vim-airline/vim-airline-themes'
 	Plug 'scrooloose/nerdtree'
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-scripts/xoria256.vim'
-	Plug 'vim-scripts/mru.vim'
+" 	Plug 'vim-scripts/mru.vim'
 " 	Plug 'mhinz/vim-startify'
   Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
@@ -51,6 +53,7 @@ set scrolloff=3
 set autoindent
 set splitbelow
 set splitright
+set autowrite																						" save buffer when switching
 
 " persistent undo
 " try
@@ -85,10 +88,10 @@ set shiftwidth=2
 
 " *** Key mappings ***
 " Window tabs
-map <silent> <tab> :tabnext<cr>
-map <silent> <S-tab> :tabprev<cr>
+map <silent> <tab> :bnext<cr>
+map <silent> <S-tab> :bprev<cr>
 map <silent> <c-t> :tabnew<cr>
-map <silent> <c-q> :SSave current<cr>:qa<cr>
+map <silent> <c-q> :bdelete<cr>
 map <leader><tab> <c-w><c-w>
 " Ctrl-O Edit
 set wildcharm=<C-I>
@@ -133,10 +136,6 @@ colorscheme xoria256
 catch
 endtry	
 
-" if ()
-" 	{
-" 	}
-" 
 " vs code colors
 hi Statement ctermfg=139 " 31
 hi Comment ctermfg=65
@@ -147,6 +146,7 @@ hi Normal ctermfg=251
 hi CursorLine ctermbg=236
 hi cursorLineNR ctermfg=253
 hi Visual ctermbg=25 ctermfg=NONE
+hi Search ctermbg=130
 
 augroup CursorLine
   au!
@@ -162,9 +162,11 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_show_hidden = 1 											" show . files
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+let g:ctrlp_max_height=20
+
 " MRU
 let MRU_Window_Height = 20 
-map <c-m> :MRU<cr>
+map <c-m> :CtrlPMRU<cr>
 let NERDTreeShowHidden=1
 " NERDTree
 let g:NERDTreeNodeDelimiter = "\u00a0"
@@ -176,6 +178,7 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
       \ }
       \ }
+set noshowmode						" dont show mode on bottom line
 " git gutter
 " always show sign column
 if exists('&signcolumn')  " Vim 7.4.2201
@@ -193,4 +196,8 @@ set updatetime=100  " faster updates
 " fugitive - vertical gdiff
 set diffopt+=vertical
 
+" Airline
+" :call AirlineTheme powerlineish()
+let g:airline_theme='powerlineish'
+let g:airline#extensions#tabline#enabled=1		" show buffers instead of tabs
 
