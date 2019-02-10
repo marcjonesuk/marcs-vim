@@ -9,7 +9,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall 
 endif
 
-autocmd VimEnter * :CtrlPMRU
+autocmd VimEnter * :bnext
 "autocmd VimEnter * :PlugUpdate<cr>:q<cr>
 
 " *** Load plugins *** 
@@ -54,13 +54,15 @@ set autoindent
 set splitbelow
 set splitright
 set autowrite																						" save buffer when switching
+" remembers buffers on exit
+exec 'set viminfo=%,' . &viminfo												
 
 " persistent undo
-" try
-"     set undodir=~/.vim_runtime/temp_dirs/undodir
-"     set undofile
-" catch
-" endtry
+try
+    set undodir=~/.vim_runtime/temp_dirs/undodir
+    set undofile
+catch
+endtry
 
 " *** Search settings *** 
 set hlsearch 																				" highlighting on
@@ -93,6 +95,10 @@ map <silent> <S-tab> :bprev<cr>
 map <silent> <c-t> :tabnew<cr>
 map <silent> <c-q> :bdelete<cr>
 map <leader><tab> <c-w><c-w>
+map <silent><leader>q :bdelete<cr>
+
+map <silent><leader>gd :Gdiff<cr>
+
 " Ctrl-O Edit
 set wildcharm=<C-I>
 map <c-o> :edit <c-I>
