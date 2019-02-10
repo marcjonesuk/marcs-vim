@@ -9,7 +9,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall 
 endif
 
-"autocmd VimEnter * :MRU
+autocmd VimEnter * :MRU
 "autocmd VimEnter * :PlugUpdate<cr>:q<cr>
 
 " *** Load plugins *** 
@@ -21,14 +21,16 @@ call plug#begin('~/.vim/plugged')
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-scripts/xoria256.vim'
 	Plug 'vim-scripts/mru.vim'
-	Plug 'mhinz/vim-startify'
+" 	Plug 'mhinz/vim-startify'
   Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
 	Plug 'phenomenes/ansible-snippets'
 	Plug 'mrk21/yaml-vim'
-	Plug 'scrooloose/nerdcommenter'
+"	Plug 'scrooloose/nerdcommenter'
+"   Plug 'pangloss/vim-javascript'
+	Plug 'stephpy/vim-yaml'
 call plug#end() 
 
 
@@ -51,11 +53,11 @@ set splitbelow
 set splitright
 
 " persistent undo
-try
-    set undodir=~/.vim_runtime/temp_dirs/undodir
-    set undofile
-catch
-endtry
+" try
+"     set undodir=~/.vim_runtime/temp_dirs/undodir
+"     set undofile
+" catch
+" endtry
 
 " *** Search settings *** 
 set hlsearch 																				" highlighting on
@@ -70,6 +72,10 @@ syntax enable
 set showmatch           " highlight matching [{()}]
 set cursorline
 
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+endif
 
 " *** Tabs and indentation ***
 set showtabline=2
@@ -109,7 +115,16 @@ map <c-f3> N
 " Session
 map <silent> <f9> :SSave <c-I>
 map <silent> <f10> :SLoad <c-I>
-
+" Commenting blocks of code.
+autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
+autocmd FileType sh,ruby,python   let b:comment_leader = '# '
+autocmd FileType conf,fstab       let b:comment_leader = '# '
+autocmd FileType tex              let b:comment_leader = '% '
+autocmd FileType mail             let b:comment_leader = '> '
+autocmd FileType vim              let b:comment_leader = '" '
+autocmd FileType yaml             let b:comment_leader = '# '
+noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
+noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
 " *** Colorscheme ***
 set background=dark
@@ -117,6 +132,25 @@ try
 colorscheme xoria256 
 catch
 endtry	
+
+" if ()
+" 	{
+" 	}
+" 
+" vs code colors
+hi Statement ctermfg=139 " 31
+hi Comment ctermfg=65
+hi Constant ctermfg=173
+hi Identifier ctermfg=110
+hi Type ctermfg=187
+hi Normal ctermfg=251
+hi CursorLine ctermfg=236
+
+augroup CursorLine
+  au!
+  au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
+  au WinLeave * setlocal nocursorline
+augroup END
 
 
 " *** Plugins ***
