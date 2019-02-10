@@ -1,5 +1,8 @@
 " https://github.com/marcjonesuk/marcs-vim/
 
+" todo:
+" "
+
 set nocompatible
 
 " *** Install Plugin manager  ***
@@ -9,12 +12,15 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall 
 endif
 
-autocmd VimEnter * :bnext
+" autocmd VimEnter *  :source ~/.vim/session
+autocmd VimEnter * :CtrlPMRU
+" :bnext
 "autocmd VimEnter * :PlugUpdate<cr>:q<cr>
 
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
+	Plug 'tpope/vim-obsession'
 	Plug 'Yggdroot/indentLine'
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
@@ -51,7 +57,7 @@ set splitbelow
 set splitright
 set autowrite																						" save buffer when switching
 " remembers buffers on exit
-exec 'set viminfo=%,' . &viminfo												
+"exec 'set viminfo=%,' . &viminfo												
 
 " persistent undo
 try
@@ -91,7 +97,6 @@ map <silent> <S-tab> :bprev<cr>
 map <silent> <c-t> :tabnew<cr>
 map <leader><tab> <c-w><c-w>
 map <silent><leader>q :bdelete<cr>
-
 map <silent><leader>gd :Gdiff<cr>
 
 " Ctrl-O Edit
@@ -147,16 +152,21 @@ hi Normal ctermfg=251
 hi CursorLine ctermbg=236
 hi cursorLineNR ctermfg=253
 hi Visual ctermbg=25 ctermfg=NONE
-hi Search ctermbg=130
-" hi Wildmenu ctermbg=
-" hi Status ctermbg=
-
+hi Search ctermbg=148
+hi Wildmenu ctermbg=25 cterm=NONE ctermfg=white
+hi Status ctermbg=253 cterm=NONE
+hi StatusLine ctermbg=234 cterm=NONE
 
 augroup CursorLine
   au!
   au VimEnter,WinEnter,BufWinEnter * setlocal cursorline
   au WinLeave * setlocal nocursorline
 augroup END
+
+highlight  CursorLine ctermbg=236 ctermfg=None
+autocmd InsertEnter * highlight  CursorLine ctermbg=25
+autocmd InsertLeave * highlight  CursorLine ctermbg=236 ctermfg=None
+
 
 
 " *** Plugins ***
@@ -169,7 +179,6 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_max_height=20
 
 " MRU
-let MRU_Window_Height = 20 
 map <c-m> :CtrlPMRU<cr>
 let NERDTreeShowHidden=1
 " NERDTree
@@ -191,10 +200,10 @@ else
   let g:gitgutter_sign_column_always = 1
 endif
 highlight clear SignColumn
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=yellow
-highlight GitGutterDelete ctermfg=red
-highlight GitGutterChangeDelete ctermfg=yellow
+highlight GitGutterAdd ctermfg=148 ctermbg=233
+highlight GitGutterChange ctermfg=229 ctermbg=233
+highlight GitGutterDelete ctermfg=124 ctermbg=233
+highlight GitGutterChangeDelete ctermfg=yellow ctermbg=233
 set updatetime=100  " faster updates
 
 " fugitive - vertical gdiff
@@ -202,6 +211,5 @@ set diffopt+=vertical
 
 " Airline
 " :call AirlineTheme powerlineish()
-let g:airline_theme='powerlineish'
+let g:airline_theme='minimalist' "'powerlineish'
 let g:airline#extensions#tabline#enabled=1		" show buffers instead of tabs
-
