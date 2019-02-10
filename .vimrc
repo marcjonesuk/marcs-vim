@@ -27,6 +27,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'SirVer/ultisnips'
 	Plug 'honza/vim-snippets'
 	Plug 'phenomenes/ansible-snippets'
+	Plug 'mrk21/yaml-vim'
+	Plug 'scrooloose/nerdcommenter'
 call plug#end() 
 
 
@@ -154,3 +156,5 @@ set updatetime=100  " faster updates
 
 " fugitive - vertical gdiff
 set diffopt+=vertical
+
+
