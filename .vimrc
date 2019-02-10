@@ -87,7 +87,6 @@ set shiftwidth=2
 map <silent> <tab> :bnext<cr>
 map <silent> <S-tab> :bprev<cr>
 map <silent> <c-t> :tabnew<cr>
-map <silent> <c-w> :bdelete<cr>
 map <leader><tab> <c-w><c-w>
 " Ctrl-O Edit
 set wildcharm=<C-I>
