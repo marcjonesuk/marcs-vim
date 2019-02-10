@@ -35,6 +35,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'mrk21/yaml-vim'
 "	Plug 'scrooloose/nerdcommenter'
 	Plug 'stephpy/vim-yaml'
+	Plug 'tpope/vim-vinegar'
 call plug#end() 
 
 
@@ -51,7 +52,7 @@ set laststatus=2
 set noerrorbells visualbell t_vb=												" no bells
 autocmd GUIEnter * set visualbell t_vb=
 set ruler
-set scrolloff=3
+set scrolloff=10
 set autoindent
 set splitbelow
 set splitright
@@ -71,7 +72,7 @@ set hlsearch 																				" highlighting on
 set incsearch 																			" search as you type
 set ignorecase 																			" ignore case for searching
 " double esc to remove highlighting
-nnoremap <silent> <esc><esc> :silent! nohls<cr> 		
+nnoremap <silent> <esc><esc> :silent! nohls<cr>
 
 
 " *** Display settings ***
@@ -152,7 +153,7 @@ hi Normal ctermfg=251
 hi CursorLine ctermbg=236
 hi cursorLineNR ctermfg=253
 hi Visual ctermbg=25 ctermfg=NONE
-hi Search ctermbg=148
+hi Search ctermbg=25 ctermfg=251
 hi Wildmenu ctermbg=25 cterm=NONE ctermfg=white
 hi Status ctermbg=253 cterm=NONE
 hi StatusLine ctermbg=234 cterm=NONE
@@ -166,6 +167,9 @@ augroup END
 highlight  CursorLine ctermbg=236 ctermfg=None
 autocmd InsertEnter * highlight  CursorLine ctermbg=25
 autocmd InsertLeave * highlight  CursorLine ctermbg=236 ctermfg=None
+autocmd InsertEnter * highlight  CursorLineNR ctermbg=24
+autocmd InsertLeave * highlight  CursorLineNR ctermbg=234 ctermfg=None
+
 
 
 
@@ -191,7 +195,7 @@ let g:lightline = {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
       \ }
       \ }
-set noshowmode						" dont show mode on bottom line
+set noshowmode						" don't show mode on bottom line
 " git gutter
 " always show sign column
 if exists('&signcolumn')  " Vim 7.4.2201
