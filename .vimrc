@@ -144,7 +144,9 @@ hi Constant ctermfg=173
 hi Identifier ctermfg=110
 hi Type ctermfg=187
 hi Normal ctermfg=251
-hi CursorLine ctermfg=236
+hi CursorLine ctermbg=236
+hi cursorLineNR ctermfg=253
+hi Visual ctermbg=25 ctermfg=NONE
 
 augroup CursorLine
   au!
