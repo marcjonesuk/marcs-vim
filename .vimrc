@@ -151,7 +151,8 @@ catch
 endtry	
 
 :command -nargs=+ S :lvim "<args>" % | :lopen  
-:map <silent> <leader>s <cr>:lvim "<c-r>/" %<cr>:nohlsearch<cr>:lopen<cr>
+
+:map <silent> <leader>s :lvim "<c-r>/" %<cr>:nohlsearch<cr>:lopen<cr>:set nowrap<cr>
 
 " vs code colors
 hi Statement ctermfg=139 " 31
@@ -164,6 +165,7 @@ hi CursorLine ctermbg=236
 hi cursorLineNR ctermfg=253
 hi Visual ctermbg=25 ctermfg=NONE
 hi Search ctermbg=25 ctermfg=251
+hi IncSearch ctermbg=25 ctermfg=251
 hi Wildmenu ctermbg=25 cterm=NONE ctermfg=white
 hi Status ctermbg=253 cterm=NONE
 hi StatusLine ctermbg=234 cterm=NONE
