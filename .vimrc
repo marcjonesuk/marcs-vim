@@ -36,6 +36,7 @@ call plug#begin('~/.vim/plugged')
 "	Plug 'scrooloose/nerdcommenter'
 	Plug 'stephpy/vim-yaml'
 	Plug 'tpope/vim-vinegar'
+	Plug 'mbbill/undotree'
 call plug#end() 
 
 
@@ -196,6 +197,7 @@ let g:lightline = {
       \ }
       \ }
 set noshowmode						" don't show mode on bottom line
+
 " git gutter
 " always show sign column
 if exists('&signcolumn')  " Vim 7.4.2201
