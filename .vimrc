@@ -1,4 +1,4 @@
- " https://github.com/marcjonesuk/marcs-vim/
+" https://github.com/marcjonesuk/marcs-vim/
 
 " todo:
 " "
@@ -38,6 +38,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-vinegar'
 	Plug 'mbbill/undotree'
 	Plug 'w0rp/ale'
+" 	Plug 'majutsushi/tagbar'
+	Plug 'ddrscott/vim-side-search'
 call plug#end() 
 
 
@@ -58,7 +60,7 @@ set scrolloff=10
 set autoindent
 set splitbelow
 set splitright
-set autowrite																						" save buffer when switching
+" set autowrite																						" save buffer when switching
 " remembers buffers on exit
 "exec 'set viminfo=%,' . &viminfo												
 
@@ -76,16 +78,18 @@ set ignorecase 																			" ignore case for searching
 " double esc to remove highlighting
 nnoremap <silent> <esc><esc> :silent! nohls<cr>
 
+" vnoremap s y:grep/\V<C-r>=escape(@",'/\') %<CR>:copen<CR>
+
 
 " *** Display settings ***
 syntax enable
 set showmatch           " highlight matching [{()}]
 set cursorline
 
-if $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-endif
+" if $TERM_PROGRAM =~ "iTerm"
+"     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+"     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+" endif
 
 " *** Tabs and indentation ***
 set showtabline=2
@@ -146,6 +150,9 @@ colorscheme xoria256
 catch
 endtry	
 
+:command -nargs=+ S :lvim "<args>" % | :lopen  
+:map <silent> <leader>s <cr>:lvim "<c-r>/" %<cr>:nohlsearch<cr>:lopen<cr>
+
 " vs code colors
 hi Statement ctermfg=139 " 31
 hi Comment ctermfg=65
@@ -191,7 +198,7 @@ let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_max_height=20
 
 " MRU
-map <c-m> :CtrlPMRU<cr>
+" map <c-m> :CtrlPMRU<cr>
 let NERDTreeShowHidden=1
 " NERDTree
 let g:NERDTreeNodeDelimiter = "\u00a0"
@@ -225,4 +232,3 @@ set diffopt+=vertical
 " Airline
 " :call AirlineTheme powerlineish()
 let g:airline_theme='minimalist' "'powerlineish'
-" let g:airline#extensions#tabline#enabled=1		" show buffers instead of tabs
