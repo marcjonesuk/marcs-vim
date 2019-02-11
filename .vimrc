@@ -1,4 +1,4 @@
-" https://github.com/marcjonesuk/marcs-vim/
+ " https://github.com/marcjonesuk/marcs-vim/
 
 " todo:
 " "
@@ -20,12 +20,12 @@ autocmd VimEnter * :CtrlPMRU
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
-	Plug 'tpope/vim-obsession'
-	Plug 'Yggdroot/indentLine'
-	Plug 'vim-airline/vim-airline'
-	Plug 'vim-airline/vim-airline-themes'
-	Plug 'scrooloose/nerdtree'
-	Plug 'ctrlpvim/ctrlp.vim'
+ 	Plug 'tpope/vim-obsession'
+ 	Plug 'Yggdroot/indentLine'
+ 	Plug 'vim-airline/vim-airline'
+ 	Plug 'vim-airline/vim-airline-themes'
+ 	Plug 'scrooloose/nerdtree'
+ 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-scripts/xoria256.vim'
   Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
@@ -37,6 +37,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'stephpy/vim-yaml'
 	Plug 'tpope/vim-vinegar'
 	Plug 'mbbill/undotree'
+	Plug 'w0rp/ale'
 call plug#end() 
 
 
@@ -94,10 +95,9 @@ set shiftwidth=2
 
 " *** Key mappings ***
 " Window tabs
-map <silent> <tab> :bnext<cr>
-map <silent> <S-tab> :bprev<cr>
+map <silent> <tab> :tabnext<cr>
+map <silent> <S-tab> :tabprev<cr>
 map <silent> <c-t> :tabnew<cr>
-map <leader><tab> <c-w><c-w>
 map <silent><leader>q :bdelete<cr>
 map <silent><leader>gd :Gdiff<cr>
 
@@ -137,6 +137,8 @@ autocmd FileType yaml             let b:comment_leader = '# '
 noremap <silent> <leader>cc :<C-B>silent <C-E>s/^/<C-R>=escape(b:comment_leader,'\/')<CR>/<CR>:nohlsearch<CR>
 noremap <silent> <leader>cu :<C-B>silent <C-E>s/^\V<C-R>=escape(b:comment_leader,'\/')<CR>//e<CR>:nohlsearch<CR>
 
+autocmd FileType yaml :set nowrap
+
 " *** Colorscheme ***
 set background=dark
 try 
@@ -150,7 +152,7 @@ hi Comment ctermfg=65
 hi Constant ctermfg=173
 hi Identifier ctermfg=110
 hi Type ctermfg=187
-hi Normal ctermfg=251
+hi Normal ctermfg=251 " ctermbg=233
 hi CursorLine ctermbg=236
 hi cursorLineNR ctermfg=253
 hi Visual ctermbg=25 ctermfg=NONE
@@ -158,6 +160,11 @@ hi Search ctermbg=25 ctermfg=251
 hi Wildmenu ctermbg=25 cterm=NONE ctermfg=white
 hi Status ctermbg=253 cterm=NONE
 hi StatusLine ctermbg=234 cterm=NONE
+hi MatchParen cterm=none ctermfg=139 ctermbg=NONE
+
+" ALE colors
+hi ALEErrorSign ctermfg=124 ctermbg=233
+hi ALEWarningSign ctermfg=229 ctermbg=233
 
 augroup CursorLine
   au!
@@ -218,4 +225,4 @@ set diffopt+=vertical
 " Airline
 " :call AirlineTheme powerlineish()
 let g:airline_theme='minimalist' "'powerlineish'
-let g:airline#extensions#tabline#enabled=1		" show buffers instead of tabs
+" let g:airline#extensions#tabline#enabled=1		" show buffers instead of tabs
