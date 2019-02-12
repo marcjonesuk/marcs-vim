@@ -20,7 +20,7 @@ autocmd VimEnter * :CtrlPMRU
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
- 	Plug 'tpope/vim-obsession'
+"  	Plug 'tpope/vim-obsession'
  	Plug 'Yggdroot/indentLine'
 "	Plug 'itchyny/lightline.vim'
  	Plug 'vim-airline/vim-airline'
@@ -31,17 +31,19 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-scripts/xoria256.vim'
   Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
-	Plug 'SirVer/ultisnips'
-	Plug 'honza/vim-snippets'
-	Plug 'phenomenes/ansible-snippets'
+" 	Plug 'SirVer/ultisnips'
+" 	Plug 'honza/vim-snippets'
+" 	Plug 'phenomenes/ansible-snippets'
 	Plug 'mrk21/yaml-vim'
 "	Plug 'scrooloose/nerdcommenter'
-	Plug 'stephpy/vim-yaml'
-	Plug 'tpope/vim-vinegar'
-	Plug 'mbbill/undotree'
+		Plug 'stephpy/vim-yaml'
+" 	Plug 'tpope/vim-vinegar'
+" 	Plug 'mbbill/undotree'
 	Plug 'w0rp/ale'
 " 	Plug 'majutsushi/tagbar'
-	Plug 'ddrscott/vim-side-search'
+" 	Plug 'ddrscott/vim-side-search'
+	Plug 'terryma/vim-smooth-scroll'
+	Plug 'yuttie/comfortable-motion.vim'
 call plug#end() 
 
 
@@ -89,10 +91,6 @@ syntax enable
 set showmatch           " highlight matching [{()}]
 set cursorline
 
-" if $TERM_PROGRAM =~ "iTerm"
-"     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-"     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-" endif
 
 " *** Tabs and indentation ***
 set showtabline=2
@@ -101,6 +99,11 @@ set shiftwidth=2
 
 
 " *** Key mappings ***
+nnoremap <silent> <c-f> :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> <c-b> :call comfortable_motion#flick(-100)<CR>
+
+
+
 " Window tabs
 map <silent> <tab> :tabnext<cr>
 map <silent> <S-tab> :tabprev<cr>
