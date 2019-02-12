@@ -129,6 +129,7 @@ set whichwrap+=<,>,h,l,[,]
 map <silent> <f9> :SSave <c-I>
 map <silent> <f10> :SLoad <c-I>
 " Commenting blocks of code.
+let b:comment_leader = '# '
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
 autocmd FileType sh,ruby,python   let b:comment_leader = '# '
 autocmd FileType conf,fstab       let b:comment_leader = '# '
