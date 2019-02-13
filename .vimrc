@@ -193,8 +193,6 @@ autocmd InsertEnter * highlight  CursorLineNR ctermbg=24
 autocmd InsertLeave * highlight  CursorLineNR ctermbg=234 ctermfg=None
 
 
-
-
 " *** Plugins ***
 " CtrlP settings
 let g:ctrlp_match_window = 'bottom,order:ttb' 		"ctrlp ordered top to bottom
