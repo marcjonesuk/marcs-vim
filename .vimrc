@@ -105,6 +105,8 @@ map <silent> <c-t> :tabnew<cr>
 map <silent><leader>q :bdelete<cr>
 map <silent><leader>gd :Gdiff<cr>
 
+map <silent>` :CtrlPMRU<cr>
+
 " Ctrl-O Edit
 set wildcharm=<C-I>
 map <c-o> :edit <c-I>
