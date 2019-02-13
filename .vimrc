@@ -44,6 +44,7 @@ call plug#begin('~/.vim/plugged')
 " 	Plug 'ddrscott/vim-side-search'
 	Plug 'terryma/vim-smooth-scroll'
 	Plug 'yuttie/comfortable-motion.vim'
+  Plug 'mileszs/ack.vim'
 call plug#end() 
 
 
@@ -246,3 +247,9 @@ set diffopt+=vertical
 " Airline
 " :call AirlineTheme powerlineish()
 let g:airline_theme='minimalist' "'powerlineish'
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+nnoremap \ :Ack!<SPACE>
