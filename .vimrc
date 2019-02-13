@@ -20,26 +20,30 @@ autocmd VimEnter * :CtrlPMRU
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
- 	Plug 'tpope/vim-obsession'
+"  	Plug 'tpope/vim-obsession'
  	Plug 'Yggdroot/indentLine'
+"	Plug 'itchyny/lightline.vim'
  	Plug 'vim-airline/vim-airline'
  	Plug 'vim-airline/vim-airline-themes'
  	Plug 'scrooloose/nerdtree'
- 	Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
+	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'vim-scripts/xoria256.vim'
   Plug 'tpope/vim-fugitive'
 	Plug 'airblade/vim-gitgutter'
-	Plug 'SirVer/ultisnips'
-	Plug 'honza/vim-snippets'
-	Plug 'phenomenes/ansible-snippets'
+" 	Plug 'SirVer/ultisnips'
+" 	Plug 'honza/vim-snippets'
+" 	Plug 'phenomenes/ansible-snippets'
 	Plug 'mrk21/yaml-vim'
 "	Plug 'scrooloose/nerdcommenter'
-	Plug 'stephpy/vim-yaml'
-	Plug 'tpope/vim-vinegar'
-	Plug 'mbbill/undotree'
+		Plug 'stephpy/vim-yaml'
+" 	Plug 'tpope/vim-vinegar'
+" 	Plug 'mbbill/undotree'
 	Plug 'w0rp/ale'
 " 	Plug 'majutsushi/tagbar'
-	Plug 'ddrscott/vim-side-search'
+" 	Plug 'ddrscott/vim-side-search'
+	Plug 'terryma/vim-smooth-scroll'
+	Plug 'yuttie/comfortable-motion.vim'
 call plug#end() 
 
 
@@ -60,6 +64,7 @@ set scrolloff=10
 set autoindent
 set splitbelow
 set splitright
+set nowrap
 " set autowrite																						" save buffer when switching
 " remembers buffers on exit
 "exec 'set viminfo=%,' . &viminfo												
@@ -86,10 +91,6 @@ syntax enable
 set showmatch           " highlight matching [{()}]
 set cursorline
 
-" if $TERM_PROGRAM =~ "iTerm"
-"     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-"     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-" endif
 
 " *** Tabs and indentation ***
 set showtabline=2
@@ -98,6 +99,11 @@ set shiftwidth=2
 
 
 " *** Key mappings ***
+nnoremap <silent> <c-f> :call comfortable_motion#flick(100)<CR>
+nnoremap <silent> <c-b> :call comfortable_motion#flick(-100)<CR>
+
+
+
 " Window tabs
 map <silent> <tab> :tabnext<cr>
 map <silent> <S-tab> :tabprev<cr>
@@ -109,7 +115,7 @@ map <silent>` :CtrlPMRU<cr>
 
 " Ctrl-O Edit
 set wildcharm=<C-I>
-map <c-o> :edit <c-I>
+map <leader>o :edit <c-I>
 " Move vertically by visual line (on wrapped lines)
 nnoremap j gj
 nnoremap k gk
@@ -122,13 +128,8 @@ set whichwrap+=<,>,h,l,[,]
 :command Wq wq
 :command W w
 :command Q q
-" Windows style shortcuts
-map <c-v> p
-map <c-x> x
-map <c-c> y
-map <c-f> /
-map <f3> n
-map <c-f3> N
+:command Qa qa
+:command QA qa
 " Session
 map <silent> <f9> :SSave <c-I>
 map <silent> <f10> :SLoad <c-I>
@@ -163,7 +164,7 @@ hi Comment ctermfg=65
 hi Constant ctermfg=173
 hi Identifier ctermfg=110
 hi Type ctermfg=187
-hi Normal ctermfg=251 " ctermbg=233
+hi Normal ctermfg=251 " ctermbg=234
 hi CursorLine ctermbg=236
 hi cursorLineNR ctermfg=253
 hi Visual ctermbg=25 ctermfg=NONE
@@ -174,9 +175,12 @@ hi Status ctermbg=253 cterm=NONE
 hi StatusLine ctermbg=234 cterm=NONE
 hi MatchParen cterm=none ctermfg=139 ctermbg=NONE
 
+hi LineNr ctermbg=234  
+highlight EndOfBuffer ctermfg=234 ctermbg=234
+
 " ALE colors
-hi ALEErrorSign ctermfg=124 ctermbg=233
-hi ALEWarningSign ctermfg=229 ctermbg=233
+hi ALEErrorSign ctermfg=124 ctermbg=234
+hi ALEWarningSign ctermfg=229 ctermbg=234
 
 augroup CursorLine
   au!
@@ -201,6 +205,8 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_show_hidden = 1 											" show . files
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_max_height=20
+let g:ctrlp_switch_buffer = 0											" disable jumping to window if already open 
+
 
 " MRU
 " map <c-m> :CtrlPMRU<cr>
@@ -209,8 +215,13 @@ let NERDTreeShowHidden=1
 let g:NERDTreeNodeDelimiter = "\u00a0"
 let g:NERDTreeWinPos = "right"
 map <f12> :NERDTreeToggle<cr>
+let g:NERDTreeMinimalUI = v:true
+" close vim if nerdtree is the last open window
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 " Lightline - show file path in status bar
 let g:lightline = {
+		  \ 'colorscheme': 'wombat',
 			\ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'relativepath', 'modified' ] ]
       \ }
@@ -225,10 +236,10 @@ else
   let g:gitgutter_sign_column_always = 1
 endif
 highlight clear SignColumn
-highlight GitGutterAdd ctermfg=148 ctermbg=233
-highlight GitGutterChange ctermfg=229 ctermbg=233
-highlight GitGutterDelete ctermfg=124 ctermbg=233
-highlight GitGutterChangeDelete ctermfg=yellow ctermbg=233
+highlight GitGutterAdd ctermfg=148 ctermbg=234
+highlight GitGutterChange ctermfg=229 ctermbg=234
+highlight GitGutterDelete ctermfg=124 ctermbg=234
+highlight GitGutterChangeDelete ctermfg=yellow ctermbg=234
 set updatetime=100  " faster updates
 
 " fugitive - vertical gdiff
