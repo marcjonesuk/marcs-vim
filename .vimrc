@@ -3,6 +3,8 @@
 " todo:
 " "
 
+
+
 set nocompatible
 
 " *** Install Plugin manager  ***
@@ -252,4 +254,21 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-nnoremap \ :Ack!<SPACE>
+function Search(string) abort
+  let saved_shellpipe = &shellpipe
+  let &shellpipe = '>'
+  try
+    execute 'Ack!' shellescape(a:string, 1)
+  finally
+    let &shellpipe = saved_shellpipe
+  endtry
+endfunction
+
+:command -nargs=+ FindInFiles :Ack! <args> 
+nnoremap <leader>/ :FindInFiles<SPACE>
+nnoremap <leader>\ :FindInFiles<space>
+noremap \ :FindInFiles<space>
+map <space> :
+:command -nargs=+ FindAndReplace :%s/<args>/gc
+nnoremap <leader>ff :FindInFiles<space>
+nnoremap <leader>fr :FindAndReplace<space>
