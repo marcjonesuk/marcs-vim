@@ -2,9 +2,6 @@
 
 " todo:
 " "
-
-
-
 set nocompatible
 
 " *** Install Plugin manager  ***
@@ -249,6 +246,7 @@ set diffopt+=vertical
 " Airline
 " :call AirlineTheme powerlineish()
 let g:airline_theme='minimalist' "'powerlineish'
+"let g:airline_theme='powerlineish'
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
@@ -268,7 +266,9 @@ endfunction
 nnoremap <leader>/ :FindInFiles<SPACE>
 nnoremap <leader>\ :FindInFiles<space>
 noremap \ :FindInFiles<space>
-map <space> :
 :command -nargs=+ FindAndReplace :%s/<args>/gc
 nnoremap <leader>ff :FindInFiles<space>
 nnoremap <leader>fr :FindAndReplace<space>
+nnoremap <tab> <c-w><c-w>
+nnoremap <leader><tab> :tabnext<cr>
+nnoremap <c-m> :CtrlPMRU<cr>
