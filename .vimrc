@@ -2,7 +2,6 @@
 
 " todo:
 " "
-
 set nocompatible
 
 " *** Install Plugin manager  ***
@@ -44,6 +43,7 @@ call plug#begin('~/.vim/plugged')
 " 	Plug 'ddrscott/vim-side-search'
 	Plug 'terryma/vim-smooth-scroll'
 	Plug 'yuttie/comfortable-motion.vim'
+  Plug 'mileszs/ack.vim'
 call plug#end() 
 
 
@@ -196,8 +196,6 @@ autocmd InsertEnter * highlight  CursorLineNR ctermbg=24
 autocmd InsertLeave * highlight  CursorLineNR ctermbg=234 ctermfg=None
 
 
-
-
 " *** Plugins ***
 " CtrlP settings
 let g:ctrlp_match_window = 'bottom,order:ttb' 		"ctrlp ordered top to bottom
@@ -251,3 +249,29 @@ set diffopt+=vertical
 " Airline
 " :call AirlineTheme powerlineish()
 let g:airline_theme='minimalist' "'powerlineish'
+"let g:airline_theme='powerlineish'
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+
+function Search(string) abort
+  let saved_shellpipe = &shellpipe
+  let &shellpipe = '>'
+  try
+    execute 'Ack!' shellescape(a:string, 1)
+  finally
+    let &shellpipe = saved_shellpipe
+  endtry
+endfunction
+
+:command -nargs=+ FindInFiles :Ack! <args> 
+nnoremap <leader>/ :FindInFiles<SPACE>
+nnoremap <leader>\ :FindInFiles<space>
+noremap \ :FindInFiles<space>
+:command -nargs=+ FindAndReplace :%s/<args>/gc
+nnoremap <leader>ff :FindInFiles<space>
+nnoremap <leader>fr :FindAndReplace<space>
+nnoremap <tab> <c-w><c-w>
+nnoremap <leader><tab> :tabnext<cr>
+nnoremap <c-m> :CtrlPMRU<cr>
