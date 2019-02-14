@@ -52,6 +52,7 @@ set wildmenu
 set number 																							" number lines
 set mouse=a 																						" mouse enabled
 set confirm 																						" confirm save on exit
+
 set nobackup																						" no swap or backup files
 set noswapfile
 set pastetoggle=<F2>
@@ -211,6 +212,8 @@ let g:ctrlp_switch_buffer = 0											" disable jumping to window if already o
 " MRU
 " map <c-m> :CtrlPMRU<cr>
 let NERDTreeShowHidden=1
+let g:ctrlp_prompt_mappings = { 'PrtExit()': ['<esc>', '`'] }
+
 " NERDTree
 let g:NERDTreeNodeDelimiter = "\u00a0"
 let g:NERDTreeWinPos = "right"
