@@ -12,14 +12,21 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 " autocmd VimEnter *  :source ~/.vim/session
-autocmd VimEnter * :CtrlPMRU
-" :bnext
+" autocmd VimEnter * :CtrlPMRU<cr> " call Startup() 
+" " :bnext
 "autocmd VimEnter * :PlugUpdate<cr>:q<cr>
+function Startup2()
+	call :CtrlPMRU
+endfunction
+
+function Startup() abort
+"	execute :CtrlPMRU
+endfunction
 
 " *** Load plugins *** 
 call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-sensible'
-"  	Plug 'tpope/vim-obsession'
+	Plug 'tpope/vim-obsession'
  	Plug 'Yggdroot/indentLine'
 "	Plug 'itchyny/lightline.vim'
  	Plug 'vim-airline/vim-airline'
@@ -44,6 +51,9 @@ call plug#begin('~/.vim/plugged')
 	Plug 'terryma/vim-smooth-scroll'
 	Plug 'yuttie/comfortable-motion.vim'
   Plug 'mileszs/ack.vim'
+  Plug 'mhinz/vim-startify'
+  Plug 'mbbill/undotree'
+	Plug 'simnalamburt/vim-mundo'
 call plug#end() 
 
 
@@ -51,7 +61,7 @@ call plug#end()
 set wildmenu
 set number 																							" number lines
 set mouse=a 																						" mouse enabled
-set confirm 																						" confirm save on exit
+" set confirm 																						" confirm save on exit
 set nobackup																						" no swap or backup files
 set noswapfile
 set pastetoggle=<F2>
@@ -62,6 +72,7 @@ autocmd GUIEnter * set visualbell t_vb=
 set ruler
 set scrolloff=10
 set autoindent
+set copyindent
 set splitbelow
 set splitright
 set nowrap
@@ -105,13 +116,12 @@ nnoremap <silent> <c-b> :call comfortable_motion#flick(-100)<CR>
 
 
 " Window tabs
-map <silent> <tab> :tabnext<cr>
-map <silent> <S-tab> :tabprev<cr>
+" map <silent> <tab> :tabnext<cr>
+map <silent> <c-tab> :tabnext<cr>
 map <silent> <c-t> :tabnew<cr>
 map <silent><leader>q :bdelete<cr>
 map <silent><leader>gd :Gdiff<cr>
 
-map <silent>` :CtrlPMRU<cr>
 
 " Ctrl-O Edit
 set wildcharm=<C-I>
@@ -202,7 +212,7 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_show_hidden = 1 											" show . files
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-let g:ctrlp_max_height=20
+let g:ctrlp_max_height=15
 let g:ctrlp_switch_buffer = 0											" disable jumping to window if already open 
 
 
@@ -272,3 +282,10 @@ nnoremap <leader>fr :FindAndReplace<space>
 nnoremap <tab> <c-w><c-w>
 nnoremap <leader><tab> :tabnext<cr>
 nnoremap <c-m> :CtrlPMRU<cr>
+" nnoremap <c-p> :CtrlPMixed<cr>
+
+" don't open CtrlPMRU when in a quickfix or location window
+autocmd FileType qf map <buffer> <Enter> :.cc<cr> 
+
+" let g:mundo_map_move_older: "Down"
+" let g:mundo_map_move_newer: "Up"
