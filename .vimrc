@@ -106,7 +106,6 @@ nnoremap <silent> <c-b> :call comfortable_motion#flick(-100)<CR>
 
 
 " Window tabs
-map <silent> <tab> :tabnext<cr>
 map <silent> <S-tab> :tabprev<cr>
 map <silent> <c-t> :tabnew<cr>
 map <silent><leader>q :bdelete<cr>
@@ -273,5 +272,7 @@ noremap \ :FindInFiles<space>
 nnoremap <leader>ff :FindInFiles<space>
 nnoremap <leader>fr :FindAndReplace<space>
 nnoremap <tab> <c-w><c-w>
+nnoremap <s-tab> <c-w><c-p>
 nnoremap <leader><tab> :tabnext<cr>
 nnoremap <c-m> :CtrlPMRU<cr>
+
