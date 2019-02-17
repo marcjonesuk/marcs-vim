@@ -23,7 +23,7 @@ set complete-=i
 set smarttab
 
 set nrformats-=octal
-
+" 
 if !has('nvim') && &ttimeoutlen == -1
   set ttimeout
   set ttimeoutlen=100
