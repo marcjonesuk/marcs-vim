@@ -51,7 +51,7 @@ function! MyStatusLine(mode)
 "     elseif a:mode == 'Enter'
 "         let statusline.="%r%*"
 "      endif
- 
+		 
 		if a:mode == 'Enter'
 	"     let statusline .= StatuslineGit()
 			let statusline .= "\ Ln %l/%L,\ Col %c\ %=%h%w\ %r %m %Y "
