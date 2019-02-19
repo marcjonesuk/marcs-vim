@@ -99,6 +99,6 @@ autocmd FileType qf map <buffer> <Enter> :.cc<cr>
 
 " let g:mundo_map_move_older: "Down"
 " let g:mundo_map_move_newer: "Up"
-let g:UltiSnipsSnippetsDir="~/marcs-vim/custom_snippets"
-let g:UltiSnipsSnippetDirectories=["custom_snippets", "UltiSnips"]
+let g:UltiSnipsSnippetsDir="~/marcs-vim/my-snippets"
+let g:UltiSnipsSnippetDirectories=["my-snippets", "UltiSnips"]
 
