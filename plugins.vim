@@ -14,14 +14,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'mileszs/ack.vim'
   Plug 'mhinz/vim-startify'
 	Plug 'simnalamburt/vim-mundo'
-	Plug 'junegunn/seoul256.vim'
-	Plug 'wikitopian/hardmode'
 	Plug 'pseewald/vim-anyfold'
  	Plug 'Yggdroot/indentLine'
-	Plug 'chriskempson/base16-vim'
-	Plug 'altercation/vim-colors-solarized'
 	Plug 'SirVer/ultisnips'
-	Plug 'phenomenes/ansible-snippets'
 call plug#end() 
 
 " CtrlP settings
@@ -97,8 +92,6 @@ nnoremap <c-m> :CtrlPMRU<cr>
 " don't open CtrlPMRU when in a quickfix or location window
 autocmd FileType qf map <buffer> <Enter> :.cc<cr> 
 
-" let g:mundo_map_move_older: "Down"
-" let g:mundo_map_move_newer: "Up"
 let g:UltiSnipsSnippetsDir="~/marcs-vim/my-snippets"
 let g:UltiSnipsSnippetDirectories=["my-snippets", "UltiSnips"]
 
