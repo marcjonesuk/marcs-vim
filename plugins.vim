@@ -18,6 +18,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'wikitopian/hardmode'
 	Plug 'pseewald/vim-anyfold'
  	Plug 'Yggdroot/indentLine'
+	Plug 'chriskempson/base16-vim'
+	Plug 'altercation/vim-colors-solarized'
+	Plug 'SirVer/ultisnips'
+	Plug 'phenomenes/ansible-snippets'
 call plug#end() 
 
 " CtrlP settings
@@ -28,6 +32,7 @@ let g:ctrlp_show_hidden = 1 											" show . files
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 let g:ctrlp_max_height=15
 let g:ctrlp_switch_buffer = 0											" disable jumping to window if already open 
+
 
 
 " MRU
@@ -94,4 +99,6 @@ autocmd FileType qf map <buffer> <Enter> :.cc<cr>
 
 " let g:mundo_map_move_older: "Down"
 " let g:mundo_map_move_newer: "Up"
+let g:UltiSnipsSnippetsDir="~/marcs-vim/custom_snippets"
+let g:UltiSnipsSnippetDirectories=["custom_snippets", "UltiSnips"]
 
