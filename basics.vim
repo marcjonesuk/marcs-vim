@@ -21,7 +21,6 @@ set nowrap
 " set autowrite																						" save buffer when switching
 " remembers buffers on exit
 "exec 'set viminfo=%,' . &viminfo												
-set autochdir																							" set dir to file that was opened
 " persistent undo
 try
  	set undodir=~/.vim_runtime/temp_dirs/undodir
