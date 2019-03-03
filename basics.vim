@@ -107,3 +107,6 @@ endfunction
 
 nnoremap <silent> <leader>z :tab split<cr>
 set updatetime=100  " faster updates
+
+set listchars=eol:⏎,tab:␉·,trail:␠,nbsp:⎵
+set list
