@@ -17,6 +17,12 @@ nnoremap k gk
 nnoremap <down> gj
 nnoremap <up> gk
 
+" Move around in insert mode
+inoremap <C-h> <C-o>h
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
+inoremap <C-l> <C-o>l
+
 " unmap the command history
 map <silent> q: echo<cr> 
 
