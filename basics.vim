@@ -2,6 +2,7 @@
 set wildmenu
 set wildignore=*.retry
 set number 																							" number lines
+set relativenumber
 set confirm 																						" confirm save on exit
 set nobackup																						" no swap or backup files
 set noswapfile
