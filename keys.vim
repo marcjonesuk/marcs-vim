@@ -24,7 +24,7 @@ inoremap <C-k> <C-o>k
 inoremap <C-l> <C-o>l
 
 " unmap the command history
-map <silent> q: echo<cr> 
+map <silent> q: echo<cr>
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
